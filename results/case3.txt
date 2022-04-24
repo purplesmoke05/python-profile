@@ -1,0 +1,23 @@
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    11     18.8 MiB     18.8 MiB           1   @profile
+    12                                         def test1(num: int):
+    13     18.8 MiB      0.0 MiB           1       injector = Injector(configure)
+    14     18.8 MiB      0.0 MiB           1       test1_instances: List[Test1] = []
+    15     34.9 MiB      0.0 MiB      100001       for _ in range(num):
+    16     34.9 MiB     13.4 MiB      100000           outer = injector.get(Test1)
+    17     34.9 MiB      2.8 MiB      100000           test1_instances.append(outer)
+
+
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    20     19.9 MiB     19.9 MiB           1   @profile
+    21                                         def test2(num: int):
+    22     19.9 MiB      0.0 MiB           1       test2_instance: List[Test2] = []
+    23     51.0 MiB      5.9 MiB      100001       for _ in range(num):
+    24     51.0 MiB      2.3 MiB      100000           inner = Inner(10 * 1000)
+    25     51.0 MiB     22.9 MiB      100000           test2_instance.append(Test2(inner))
+
+

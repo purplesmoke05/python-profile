@@ -1,24 +1,22 @@
-Filename: ./Projects/python-profile/cases/case1/main.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-     4     18.4 MiB     18.4 MiB           1   @profile
-     5                                         def test1(num: int):
-     6                                             # instance variable
-     7     18.4 MiB      0.0 MiB           1       test1_instances: List[Test1] = []
-     8     59.1 MiB      0.0 MiB      100001       for _ in range(num):
-     9     59.1 MiB     40.7 MiB      100000            test1_instances.append(Test1())
+     5     18.2 MiB     18.2 MiB           1   @profile
+     6                                         def test1(num: int):
+     7                                             # instance variable
+     8     18.2 MiB      0.0 MiB           1       test1_instances: List[Test1] = []
+     9     59.0 MiB      0.0 MiB      100001       for _ in range(num):
+    10     59.0 MiB     40.7 MiB      100000           test1_instances.append(Test1())
 
 
-Filename: ./python-profile/cases/case1/main.py
 
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    11     20.7 MiB     20.7 MiB           1   @profile
-    12                                         def test2(num: int):
-    13                                             # global variable
-    14     20.7 MiB      0.0 MiB           1       test2_instance: List[Test2] = []
-    15     23.8 MiB      0.0 MiB      100001       for _ in range(num):
-    16     23.8 MiB      3.1 MiB      100000           test2_instance.append(Test2())
+    13     20.6 MiB     20.6 MiB           1   @profile
+    14                                         def test2(num: int):
+    15                                             # global variable
+    16     20.6 MiB      0.0 MiB           1       test2_instance: List[Test2] = []
+    17     23.6 MiB      0.0 MiB      100001       for _ in range(num):
+    18     23.6 MiB      3.1 MiB      100000           test2_instance.append(Test2())
 
 
