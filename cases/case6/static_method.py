@@ -27,3 +27,19 @@ class Test2:
         for i in range(a):
             ret *= i * b * ret
         return ret
+
+
+class TestEx:
+    """
+    Class with classmethod
+    """
+
+    def __init__(self) -> None:
+        pass
+
+    @classmethod
+    def calc(cls, a: int, b: int) -> int:
+        ret: int = 1
+        for i in range(a):
+            ret *= i * b * ret
+        return ret
