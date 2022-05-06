@@ -73,6 +73,24 @@ def main():
     assert got_test_model is not None
     assert got_test_model.data == "hoge1"
 
+    # commit in session1
+    session1.commit()
+
+    # Query test model in session2
+    _test_model_in_session2 = session2.query(TestModel).first()
+
+    # Update test model in session1
+    _test_model = session1.query(TestModel).first()
+    _test_model.data = "hoge2"
+    session1.merge(_test_model)
+    session1.commit()
+
+    # Query test model in session2 but the record found is not latest one.
+    _test_model_in_session2 = session2.query(TestModel).first()
+    assert _test_model_in_session2 is not None
+    assert _test_model_in_session2.data == "hoge1"
+
+
 
 
 
