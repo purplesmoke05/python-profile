@@ -1,3 +1,4 @@
+import os
 from typing import List, Optional
 from datetime import datetime
 from datetime import date as datetime_date
@@ -42,9 +43,10 @@ class TestModel(Base):
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy import create_engine
 
+DB_FILE_NAME = "sample_db.sqlite3"
 
 def main():
-    engine = create_engine('sqlite:///sample_db.sqlite3', echo=True)
+    engine = create_engine('sqlite:///'+DB_FILE_NAME, echo=True)
     SessionLocal = sessionmaker(autocommit=False, autoflush=True, bind=engine)
 
     Base.metadata.create_all(engine)
@@ -65,11 +67,16 @@ def main():
 
     # operate "rollback" in another session
     session2.rollback()
-    got_test_model: Optional[TestModel] = session2.query(TestModel).first()
+    got_test_model: Optional[TestModel] = session1.query(TestModel).first()
 
-    # then result by session1 query is rollbacked
-    assert got_test_model is None
+    # then result by session1 query is not rolled back
+    assert got_test_model is not None
+    assert got_test_model.data == "hoge1"
+
+
 
 
 if __name__ == "__main__":
+    os.remove(DB_FILE_NAME)
     main()
+
