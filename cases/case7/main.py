@@ -90,7 +90,14 @@ def main():
     assert _test_model_in_session2 is not None
     assert _test_model_in_session2.data == "hoge1"
 
+    # Remove all object instances from this Session.
+    # https://docs.sqlalchemy.org/en/14/orm/session_api.html#sqlalchemy.orm.Session.expunge_all
+    session2.expunge_all()
 
+    # Query test model in session2 and it's latest one.
+    _test_model_in_session2 = session2.query(TestModel).first()
+    assert _test_model_in_session2 is not None
+    assert _test_model_in_session2.data == "hoge2"
 
 
 
